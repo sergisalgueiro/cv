@@ -228,7 +228,7 @@ export const cvData: CVData = {
           { name: 'Catalan', level: 'Native / Bilingual', rating: 5 },
           { name: 'Spanish', level: 'Native / Bilingual', rating: 5 },
           { name: 'English', level: 'Professional Working Proficiency', rating: 4 },
-          { name: 'French', level: 'Elementary Proficiency', rating: 2 },
+          { name: 'French', level: 'Intermediate Proficiency', rating: 3 },
         ],
       },
       footer: {
@@ -366,7 +366,7 @@ export const cvData: CVData = {
           { name: 'Català', level: 'Natiu / Bilingüe', rating: 5 },
           { name: 'Castellà', level: 'Natiu / Bilingüe', rating: 5 },
           { name: 'Anglès', level: 'Competència Professional Plena', rating: 4 },
-          { name: 'Francès', level: 'Nivell Bàsic / Elemental', rating: 2 },
+          { name: 'Francès', level: 'Nivell Intermedi', rating: 3 },
         ],
       },
       footer: {
@@ -504,7 +504,7 @@ export const cvData: CVData = {
           { name: 'Catalán', level: 'Nativo / Bilingüe', rating: 5 },
           { name: 'Español', level: 'Nativo / Bilingüe', rating: 5 },
           { name: 'Inglés', level: 'Competencia Profesional Completa', rating: 4 },
-          { name: 'Francés', level: 'Competencia Básica / Elemental', rating: 2 },
+          { name: 'Francés', level: 'Competencia Intermedia', rating: 3 },
         ],
       },
       footer: {

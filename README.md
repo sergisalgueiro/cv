@@ -26,7 +26,12 @@ Trilingual, responsive, ultra-fast personal CV website designed with **Astro** a
   * **Skills:** Categorized technical skill chips (Programming, Backend/IoT, Embedded Systems, Testing/Tools).
   * **Languages:** Spoken languages with dot ratings (Catalan, Spanish, English, French).
 * **Structured Data & SEO:**
-  * `schema.org/Person` JSON-LD metadata for search engines and LinkedIn previews.
+  * Multi-language XML Sitemap (`@astrojs/sitemap`) generated automatically for `/`, `/ca`, `/es` with Google `xhtml:link rel="alternate" hreflang` entries.
+  * Dynamic `robots.txt` automatically pointing search engines to `sitemap-index.xml`.
+  * Proper canonical URLs, `hreflang` alternate link tags, and Open Graph / Twitter Card meta tags.
+  * Googlebot indexing & snippet directives (`max-snippet:-1`, `max-image-preview:large`).
+  * `schema.org/Person` JSON-LD rich structured data linking LinkedIn, GitHub, alumni institutions, and spoken languages.
+  * One-click Google Search Console verification support via `PUBLIC_GOOGLE_SITE_VERIFICATION`.
 * **Single Source of Truth:**
   * All content and translations live in [`src/data/cv.ts`](src/data/cv.ts).
 
@@ -54,7 +59,8 @@ Trilingual, responsive, ultra-fast personal CV website designed with **Astro** a
 │   ├── pages/
 │   │   ├── index.astro           # English (/)
 │   │   ├── ca/index.astro        # Catalan (/ca)
-│   │   └── es/index.astro        # Spanish (/es)
+│   │   ├── es/index.astro        # Spanish (/es)
+│   │   └── robots.txt.ts         # Dynamic robots.txt with sitemap reference
 │   └── styles/
 │       └── global.css            # Tailwind base & print styles
 ├── public/
@@ -152,6 +158,39 @@ To make your CV available to external recruiters without opening router ports:
 2. Run `cloudflared tunnel create cv-tunnel`.
 3. Route your domain (e.g. `cv.salgueiro.com`) to `http://localhost:80`.
 4. Cloudflare provides free SSL, DDoS protection, and global edge caching.
+
+---
+
+## 🔍 Google Indexing & Search Engine Optimization (SEO)
+
+The website is fully optimized for fast indexing and multilingual ranking across Google and other search engines.
+
+### 1. Setting Your Production Domain
+In `.env` (or directly in `astro.config.mjs`):
+```bash
+SITE_URL=https://sergisalgueiro.pages.dev
+```
+When built, this automatically configures:
+- Canonical URLs (`<link rel="canonical">`)
+- Sitemaps (`/sitemap-index.xml` and `/sitemap-0.xml` with Google `xhtml:link rel="alternate" hreflang` entries for `/`, `/ca`, and `/es`)
+- Robots directive (`/robots.txt` referencing your exact sitemap URL)
+
+### 2. Google Search Console Submission
+1. Go to [Google Search Console](https://search.google.com/search-console).
+2. Add your property (Domain or URL Prefix).
+3. **Verification options:**
+   * **DNS TXT record** (simplest if using Cloudflare or domain registrar).
+   * **HTML tag**: Add `PUBLIC_GOOGLE_SITE_VERIFICATION="your-verification-code"` to `.env` and rebuild/deploy.
+4. Once verified, navigate to **Sitemaps** in the left sidebar and submit:
+   ```text
+   sitemap-index.xml
+   ```
+5. Use the **URL Inspection** tool on `https://<your-domain>/` and click **"Request Indexing"**.
+
+### 3. Boosting Indexing Speed via High-Authority Backlinks
+Google indexes new domains much faster when linked from established profiles:
+* **LinkedIn:** Add your domain to your Profile **Contact info** (Website) and in your "About" or Featured section.
+* **GitHub:** Add your domain to your GitHub profile bio / website field.
 
 ---
 

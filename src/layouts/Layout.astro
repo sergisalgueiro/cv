@@ -14,19 +14,35 @@ const t = cvData.translations[locale];
 const meta = cvData.meta;
 
 const pageTitle = `${meta.name} | ${meta.title}`;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
+const siteBase = Astro.site || 'http://localhost:4321';
+const canonicalUrl = new URL(Astro.url.pathname, siteBase);
+
+// Multilingual alternate URLs
+const enUrl = new URL('/', siteBase).href;
+const caUrl = new URL('/ca/', siteBase).href;
+const esUrl = new URL('/es/', siteBase).href;
+const xDefaultUrl = enUrl;
+
+// Optional Google Search Console verification tag (set PUBLIC_GOOGLE_SITE_VERIFICATION in .env)
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const schemaPerson = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: meta.name,
   jobTitle: meta.title,
+  url: canonicalUrl.href,
   email: `mailto:${meta.email}`,
   sameAs: [meta.linkedin, meta.github],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: meta.location,
+  },
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Danmarks Tekniske Universitet (DTU)' },
     { '@type': 'CollegeOrUniversity', name: 'Universitat Politècnica de Catalunya (UPC)' },
   ],
+  knowsLanguage: ['en', 'ca', 'es', 'fr'],
 };
 ---
 
@@ -38,15 +54,40 @@ const schemaPerson = {
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={t.metaDescription} />
-    <link rel="canonical" href={canonicalUrl} />
+    <link rel="canonical" href={canonicalUrl.href} />
+
+    <!-- Robots & Crawler Directives -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Multilingual Alternates / Hreflang for Search Engines -->
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="ca" href={caUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+
+    <!-- Optional Google Search Console Verification -->
+    {googleSiteVerification && (
+      <meta name="google-site-verification" content={googleSiteVerification} />
+    )}
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="profile" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={t.metaDescription} />
-    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:site_name" content={meta.name} />
+    <meta property="og:locale" content={locale === 'en' ? 'en_US' : locale === 'ca' ? 'ca_ES' : 'es_ES'} />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="ca_ES" />
+    <meta property="og:locale:alternate" content="es_ES" />
     <meta property="profile:first_name" content="Sergi" />
     <meta property="profile:last_name" content="Salgueiro Genís" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={t.metaDescription} />
 
     <!-- Favicon / Fonts -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
