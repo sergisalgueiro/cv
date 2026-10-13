@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../data/cv';
 import { cvData } from '../data/cv';
-import { Terminal, Printer } from 'lucide-astro';
+import { Cloud, Printer } from 'lucide-astro';
 
 interface Props {
   locale: Locale;
@@ -14,9 +14,9 @@ const currentYear = new Date().getFullYear();
 
 <footer class="no-print mt-16 border-t border-zinc-200 py-10 dark:border-zinc-800">
   <div class="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left text-xs text-zinc-500 dark:text-zinc-400">
-    <!-- Pi 3 Hardware Note -->
+    <!-- Hosting Note -->
     <div class="flex items-center gap-2">
-      <Terminal class="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+      <Cloud class="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
       <span>{t.footer.hostedOn}</span>
     </div>
 

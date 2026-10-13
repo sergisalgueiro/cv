@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../data/cv';
 import { cvData } from '../data/cv';
-import { Mail, Phone, Linkedin, Github, Download, Copy, Check, MapPin, Briefcase } from 'lucide-astro';
+import { Mail, Linkedin, Github, Download, Copy, Check, MapPin, Briefcase } from 'lucide-astro';
 
 interface Props {
   locale: Locale;
@@ -62,36 +62,31 @@ const meta = cvData.meta;
         <span>{t.about.downloadPdf}</span>
       </a>
 
-      <!-- Send Email Link -->
-      <a
-        href={`mailto:${meta.email}`}
-        class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-      >
-        <Mail class="h-4 w-4" />
-        <span>{meta.email}</span>
-      </a>
-
-      <!-- Copy Email Quick Action with Toast feedback -->
-      <button
-        id="copy-email-btn"
-        type="button"
-        data-email={meta.email}
-        title={t.about.copyEmail}
-        aria-label={t.about.copyEmail}
-        class="no-print relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
-      >
-        <Copy id="copy-icon" class="h-4 w-4" />
-        <Check id="check-icon" class="hidden h-4 w-4 text-emerald-500" />
-      </button>
-
-      <!-- Phone -->
-      <a
-        href={`tel:${meta.phone.replace(/\s+/g, '')}`}
-        class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-      >
-        <Phone class="h-4 w-4" />
-        <span>{meta.phone}</span>
-      </a>
+      <!-- Email action group: Mailto link + Attached Copy button -->
+      <div class="inline-flex items-stretch rounded-lg border border-zinc-200 bg-white shadow-2xs dark:border-zinc-800 dark:bg-zinc-900">
+        <a
+          href={`mailto:${meta.email}`}
+          title="Send email"
+          class="inline-flex items-center gap-2 rounded-l-lg px-3.5 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+        >
+          <Mail class="h-4 w-4" />
+          <span>{meta.email}</span>
+        </a>
+        <div class="w-px bg-zinc-200 dark:bg-zinc-800 my-1.5"></div>
+        <button
+          id="copy-email-btn"
+          type="button"
+          data-email={meta.email}
+          data-copied-text={locale === 'ca' ? 'Copiat!' : locale === 'es' ? '¡Copiado!' : 'Copied!'}
+          title={t.about.copyEmail}
+          aria-label={t.about.copyEmail}
+          class="no-print group relative inline-flex items-center justify-center gap-1.5 rounded-r-lg px-2.5 text-xs font-medium text-zinc-500 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+        >
+          <Copy id="copy-icon" class="h-3.5 w-3.5 transition-transform group-hover:scale-110" />
+          <Check id="check-icon" class="hidden h-3.5 w-3.5 text-emerald-500" />
+          <span id="copy-label" class="hidden sm:inline">{locale === 'ca' ? 'Copiar' : locale === 'es' ? 'Copiar' : 'Copy'}</span>
+        </button>
+      </div>
 
       <!-- LinkedIn -->
       <a
@@ -137,24 +132,35 @@ const meta = cvData.meta;
     const toast = document.getElementById('copy-toast');
     const copyIcon = document.getElementById('copy-icon');
     const checkIcon = document.getElementById('check-icon');
+    const copyLabel = document.getElementById('copy-label');
 
     if (!btn || !toast) return;
 
     btn.addEventListener('click', async () => {
       const email = btn.getAttribute('data-email');
+      const copiedText = btn.getAttribute('data-copied-text') || 'Copied!';
       if (!email) return;
 
       try {
         await navigator.clipboard.writeText(email);
 
+        const originalLabel = copyLabel ? copyLabel.textContent : '';
         copyIcon?.classList.add('hidden');
         checkIcon?.classList.remove('hidden');
+        if (copyLabel) {
+          copyLabel.textContent = copiedText;
+          copyLabel.classList.add('text-emerald-500');
+        }
         toast.classList.remove('hidden');
         toast.classList.add('flex');
 
         setTimeout(() => {
           copyIcon?.classList.remove('hidden');
           checkIcon?.classList.add('hidden');
+          if (copyLabel) {
+            copyLabel.textContent = originalLabel;
+            copyLabel.classList.remove('text-emerald-500');
+          }
           toast.classList.remove('flex');
           toast.classList.add('hidden');
         }, 2500);

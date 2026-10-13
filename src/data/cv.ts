@@ -6,7 +6,7 @@ export interface CVData {
     title: string;
     location: string;
     email: string;
-    phone: string;
+    phone?: string;
     linkedin: string;
     github: string;
     pdfFileName: string;
@@ -91,9 +91,8 @@ export const cvData: CVData = {
   meta: {
     name: 'Sergi Salgueiro Genís',
     title: 'Senior Software Engineer',
-    location: 'Barcelona, Catalonia / Spain',
+    location: 'Barcelona',
     email: 'sergi@salgueiro.com',
-    phone: '+34 673550046',
     linkedin: 'https://www.linkedin.com/in/sergi-salgueiro-genis/',
     github: 'https://github.com/sergisalgueiro',
     pdfFileName: '/CV_Sergi_Salgueiro.pdf',
@@ -233,7 +232,7 @@ export const cvData: CVData = {
         ],
       },
       footer: {
-        hostedOn: 'Self-hosted on a Raspberry Pi 3 running Raspberry Pi OS',
+        hostedOn: 'Hosted on Cloudflare Pages',
         printFriendly: 'Tip: Press Cmd/Ctrl + P for an ink-optimized printable resume.',
       },
     },
@@ -371,7 +370,7 @@ export const cvData: CVData = {
         ],
       },
       footer: {
-        hostedOn: 'Allotjat en una Raspberry Pi 3 amb Raspberry Pi OS',
+        hostedOn: 'Allotjat a Cloudflare Pages',
         printFriendly: 'Consell: Prem Cmd/Ctrl + P per a una versió optimitzada per a impressora o PDF.',
       },
     },
@@ -509,7 +508,7 @@ export const cvData: CVData = {
         ],
       },
       footer: {
-        hostedOn: 'Alojado en una Raspberry Pi 3 con Raspberry Pi OS',
+        hostedOn: 'Alojado en Cloudflare Pages',
         printFriendly: 'Consejo: Pulsa Cmd/Ctrl + P para obtener una versión imprimible optimizada para PDF.',
       },
     },
