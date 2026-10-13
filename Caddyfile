@@ -1,0 +1,10 @@
+:80 {
+    root * /var/www/cv
+    file_server
+    try_files {path} {path}/ /index.html
+    encode gzip zstd
+
+    # Cache static assets
+    @static path *.css *.js *.svg *.png *.jpg *.jpeg *.ico *.pdf
+    header @static Cache-Control "public, max-age=2592000"
+}

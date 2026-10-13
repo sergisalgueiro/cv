@@ -1,0 +1,12 @@
+services:
+  cv:
+    build: .
+    container_name: cv-sergi
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"

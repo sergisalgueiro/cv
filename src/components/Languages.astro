@@ -1,0 +1,62 @@
+---
+import type { Locale } from '../data/cv';
+import { cvData } from '../data/cv';
+import { Languages as LanguagesIcon } from 'lucide-astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = cvData.translations[locale];
+---
+
+<section id="languages" class="py-12 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="space-y-8">
+    <!-- Section Heading -->
+    <div class="flex items-center gap-3">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+        {t.spokenLanguages.title}
+      </h2>
+      <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+    </div>
+
+    <!-- Spoken Languages Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {
+        t.spokenLanguages.items.map((lang) => (
+          <div class="page-break-avoid rounded-xl border border-zinc-200 bg-white p-4 shadow-2xs dark:border-zinc-800 dark:bg-zinc-900/50">
+            <div class="flex items-center justify-between">
+              <span class="text-base font-semibold text-zinc-900 dark:text-white">
+                {lang.name}
+              </span>
+              <LanguagesIcon class="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+              {lang.level}
+            </p>
+
+            <!-- Dot Indicators (1 to 5) -->
+            <div class="mt-4 flex items-center gap-1.5" aria-label={`Proficiency: ${lang.rating} out of 5`}>
+              {
+                Array.from({ length: 5 }).map((_, idx) => {
+                  const isFilled = idx < lang.rating;
+                  return (
+                    <span
+                      class:list={[
+                        'h-2.5 w-2.5 rounded-full transition-colors',
+                        isFilled
+                          ? 'bg-emerald-500 shadow-2xs dark:bg-emerald-400'
+                          : 'bg-zinc-200 dark:bg-zinc-800',
+                      ]}
+                    />
+                  );
+                })
+              }
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

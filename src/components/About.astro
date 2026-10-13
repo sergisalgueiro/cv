@@ -1,0 +1,169 @@
+---
+import type { Locale } from '../data/cv';
+import { cvData } from '../data/cv';
+import { Mail, Phone, Linkedin, Github, Download, Copy, Check, MapPin, Briefcase } from 'lucide-astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = cvData.translations[locale];
+const meta = cvData.meta;
+---
+
+<section id="about" class="pt-8 pb-12 sm:pt-14 sm:pb-16">
+  <div class="space-y-6">
+    <!-- Header info & Badges -->
+    <div class="flex flex-col-reverse justify-between gap-6 sm:flex-row sm:items-start">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
+          {meta.name}
+        </h1>
+        <div class="flex flex-wrap items-center gap-3 text-base font-medium text-emerald-600 dark:text-emerald-400">
+          <span class="flex items-center gap-1.5">
+            <Briefcase class="h-4 w-4" />
+            {meta.title}
+          </span>
+          <span class="text-zinc-300 dark:text-zinc-700">•</span>
+          <span class="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
+            <MapPin class="h-4 w-4" />
+            {meta.location}
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Status Badge -->
+      <div class="no-print inline-flex self-start items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-50/60 px-3 py-1 text-xs font-medium text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-950/40 dark:text-emerald-300">
+        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Open to Opportunities</span>
+      </div>
+    </div>
+
+    <!-- Lead / Bio Paragraphs -->
+    <div class="space-y-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-lg">
+      <p class="font-medium text-zinc-900 dark:text-zinc-100">
+        {t.about.lead}
+      </p>
+      <p class="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+        {t.about.bio}
+      </p>
+    </div>
+
+    <!-- Actions & Social Links Bar -->
+    <div class="flex flex-wrap items-center gap-2.5 pt-2">
+      <!-- Download PDF Button -->
+      <a
+        href={meta.pdfFileName}
+        download="Sergi_Salgueiro_CV.pdf"
+        class="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 dark:focus:ring-white dark:focus:ring-offset-zinc-950"
+      >
+        <Download class="h-4 w-4" />
+        <span>{t.about.downloadPdf}</span>
+      </a>
+
+      <!-- Send Email Link -->
+      <a
+        href={`mailto:${meta.email}`}
+        class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+      >
+        <Mail class="h-4 w-4" />
+        <span>{meta.email}</span>
+      </a>
+
+      <!-- Copy Email Quick Action with Toast feedback -->
+      <button
+        id="copy-email-btn"
+        type="button"
+        data-email={meta.email}
+        title={t.about.copyEmail}
+        aria-label={t.about.copyEmail}
+        class="no-print relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+      >
+        <Copy id="copy-icon" class="h-4 w-4" />
+        <Check id="check-icon" class="hidden h-4 w-4 text-emerald-500" />
+      </button>
+
+      <!-- Phone -->
+      <a
+        href={`tel:${meta.phone.replace(/\s+/g, '')}`}
+        class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+      >
+        <Phone class="h-4 w-4" />
+        <span>{meta.phone}</span>
+      </a>
+
+      <!-- LinkedIn -->
+      <a
+        href={meta.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.about.viewLinkedin}
+        title="LinkedIn Profile"
+        class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-blue-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-blue-400"
+      >
+        <Linkedin class="h-4 w-4" />
+        <span class="hidden sm:inline">LinkedIn</span>
+      </a>
+
+      <!-- GitHub -->
+      <a
+        href={meta.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.about.viewGithub}
+        title="GitHub Profile"
+        class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+      >
+        <Github class="h-4 w-4" />
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </div>
+
+    <!-- Notification Toast for Copied Email -->
+    <div
+      id="copy-toast"
+      class="no-print fixed bottom-6 right-6 z-50 hidden items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-xl dark:bg-zinc-100 dark:text-zinc-900"
+    >
+      <Check class="h-4 w-4 text-emerald-400 dark:text-emerald-600" />
+      <span>{t.about.emailCopied}</span>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  function setupEmailCopy() {
+    const btn = document.getElementById('copy-email-btn');
+    const toast = document.getElementById('copy-toast');
+    const copyIcon = document.getElementById('copy-icon');
+    const checkIcon = document.getElementById('check-icon');
+
+    if (!btn || !toast) return;
+
+    btn.addEventListener('click', async () => {
+      const email = btn.getAttribute('data-email');
+      if (!email) return;
+
+      try {
+        await navigator.clipboard.writeText(email);
+
+        copyIcon?.classList.add('hidden');
+        checkIcon?.classList.remove('hidden');
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+
+        setTimeout(() => {
+          copyIcon?.classList.remove('hidden');
+          checkIcon?.classList.add('hidden');
+          toast.classList.remove('flex');
+          toast.classList.add('hidden');
+        }, 2500);
+      } catch (err) {
+        console.error('Failed to copy email:', err);
+      }
+    });
+  }
+
+  setupEmailCopy();
+  document.addEventListener('astro:after-swap', setupEmailCopy);
+</script>

@@ -1,0 +1,125 @@
+---
+import type { Locale } from '../data/cv';
+import { cvData } from '../data/cv';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageSelector from './LanguageSelector.astro';
+import { Menu, X } from 'lucide-astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = cvData.translations[locale];
+
+const navItems = [
+  { label: t.nav.about, href: '#about' },
+  { label: t.nav.experience, href: '#experience' },
+  { label: t.nav.education, href: '#education' },
+  { label: t.nav.skills, href: '#skills' },
+  { label: t.nav.languages, href: '#languages' },
+];
+---
+
+<header class="no-print sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md transition-colors dark:border-zinc-800/80 dark:bg-zinc-950/80">
+  <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <!-- Brand / Home -->
+    <a href="#about" class="group flex items-center gap-2 text-sm font-semibold tracking-tight text-zinc-900 dark:text-white">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+      </span>
+      <span class="transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+        {cvData.meta.name}
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex md:items-center md:gap-6">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Controls (Lang & Theme & Mobile Toggle) -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <LanguageSelector currentLocale={locale} />
+      <ThemeToggle />
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="Open navigation menu"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white md:hidden"
+      >
+        <Menu id="menu-icon-open" class="h-4 w-4" />
+        <X id="menu-icon-close" class="hidden h-4 w-4" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Nav -->
+  <div
+    id="mobile-nav-panel"
+    class="hidden border-b border-zinc-200 bg-white/95 px-4 py-4 backdrop-blur-lg dark:border-zinc-800 dark:bg-zinc-950/95 md:hidden"
+  >
+    <div class="flex flex-col space-y-3">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="mobile-nav-link rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  function setupMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const panel = document.getElementById('mobile-nav-panel');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    const links = document.querySelectorAll('.mobile-nav-link');
+
+    if (!btn || !panel) return;
+
+    function toggleMenu() {
+      const isHidden = panel.classList.contains('hidden');
+      if (isHidden) {
+        panel.classList.remove('hidden');
+        iconOpen?.classList.add('hidden');
+        iconClose?.classList.remove('hidden');
+      } else {
+        panel.classList.add('hidden');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      }
+    }
+
+    btn.onclick = toggleMenu;
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        panel.classList.add('hidden');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      });
+    });
+  }
+
+  setupMobileMenu();
+  document.addEventListener('astro:after-swap', setupMobileMenu);
+</script>

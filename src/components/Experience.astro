@@ -1,0 +1,86 @@
+---
+import type { Locale } from '../data/cv';
+import { cvData } from '../data/cv';
+import { Building2, Calendar, MapPin } from 'lucide-astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = cvData.translations[locale];
+---
+
+<section id="experience" class="py-12 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="space-y-8">
+    <!-- Section Heading -->
+    <div class="flex items-center gap-3">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+        {t.experience.title}
+      </h2>
+      <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="space-y-12">
+      {
+        t.experience.items.map((companyItem) => (
+          <div class="page-break-avoid space-y-6">
+            <!-- Company Header -->
+            <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-zinc-200/60 pb-2 dark:border-zinc-800/60">
+              <div class="flex items-center gap-2">
+                <Building2 class="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+                  {companyItem.company}
+                </h3>
+              </div>
+              <span class="flex items-center gap-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                <MapPin class="h-3.5 w-3.5" />
+                {companyItem.location}
+              </span>
+            </div>
+
+            <!-- Roles inside this company -->
+            <div class="relative ml-3 space-y-8 border-l-2 border-zinc-200 pl-6 dark:border-zinc-800">
+              {
+                companyItem.roles.map((role) => (
+                  <div class="relative space-y-3">
+                    <!-- Dot indicator -->
+                    <span class="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-500 shadow-xs dark:border-zinc-950"></span>
+
+                    <!-- Role title & period -->
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <h4 class="text-lg font-semibold text-zinc-900 dark:text-white">
+                        {role.title}
+                      </h4>
+                      <span class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
+                        <Calendar class="h-3.5 w-3.5" />
+                        {role.period}
+                      </span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                      {role.description}
+                    </p>
+
+                    <!-- Tech stack tags -->
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                      {
+                        role.tags.map((tag) => (
+                          <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 transition-colors hover:bg-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:hover:bg-zinc-700">
+                            {tag}
+                          </span>
+                        ))
+                      }
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

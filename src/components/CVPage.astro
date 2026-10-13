@@ -1,0 +1,23 @@
+---
+import type { Locale } from '../data/cv';
+import Layout from '../layouts/Layout.astro';
+import About from './About.astro';
+import Experience from './Experience.astro';
+import Education from './Education.astro';
+import Skills from './Skills.astro';
+import Languages from './Languages.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<Layout locale={locale}>
+  <About locale={locale} />
+  <Experience locale={locale} />
+  <Education locale={locale} />
+  <Skills locale={locale} />
+  <Languages locale={locale} />
+</Layout>

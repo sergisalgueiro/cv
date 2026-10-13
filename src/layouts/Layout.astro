@@ -1,0 +1,85 @@
+---
+import type { Locale } from '../data/cv';
+import { cvData } from '../data/cv';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = cvData.translations[locale];
+const meta = cvData.meta;
+
+const pageTitle = `${meta.name} | ${meta.title}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
+
+const schemaPerson = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: meta.name,
+  jobTitle: meta.title,
+  email: `mailto:${meta.email}`,
+  telephone: meta.phone,
+  sameAs: [meta.linkedin, meta.github],
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Danmarks Tekniske Universitet (DTU)' },
+    { '@type': 'CollegeOrUniversity', name: 'Universitat Politècnica de Catalunya (UPC)' },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={t.metaDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={t.metaDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="profile:first_name" content="Sergi" />
+    <meta property="profile:last_name" content="Salgueiro Genís" />
+
+    <!-- Favicon / Fonts -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Structured Data for Search Engines -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaPerson)} />
+
+    <!-- Anti-FOUC Theme Init (Runs inline before render to avoid flash) -->
+    <script is:inline>
+      (function () {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased selection:bg-emerald-500 selection:text-white dark:bg-zinc-950 dark:text-zinc-100">
+    <Header locale={locale} />
+
+    <main class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <slot />
+      <Footer locale={locale} />
+    </main>
+  </body>
+</html>
