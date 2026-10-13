@@ -1,12 +1,55 @@
 services:
-  cv:
-    build: .
-    container_name: cv-sergi
+  # ---------------------------------------------------------------------------
+  # Production web server (Nginx serving pre-compiled static files)
+  # Run: docker compose up web
+  # ---------------------------------------------------------------------------
+  web:
+    build:
+      context: .
+      target: runner
+    container_name: cv-web
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "${WEB_PORT:-80}:80"
     logging:
       driver: "json-file"
       options:
         max-size: "5m"
         max-file: "2"
+
+  # ---------------------------------------------------------------------------
+  # Local development server with hot-reload (no local Node/npm needed)
+  # Run: docker compose up dev
+  # ---------------------------------------------------------------------------
+  dev:
+    build:
+      context: .
+      target: dev
+    container_name: cv-dev
+    ports:
+      - "${DEV_PORT:-4321}:4321"
+    volumes:
+      - .:/app
+      - cv_node_modules:/app/node_modules
+    environment:
+      - ASTRO_TELEMETRY_DISABLED=1
+    command: npm run dev
+
+  # ---------------------------------------------------------------------------
+  # Static site builder: outputs compiled files directly to host ./dist/
+  # Run: docker compose run --rm build
+  # ---------------------------------------------------------------------------
+  build:
+    build:
+      context: .
+      target: dev
+    container_name: cv-build
+    volumes:
+      - .:/app
+      - cv_node_modules:/app/node_modules
+    environment:
+      - ASTRO_TELEMETRY_DISABLED=1
+    command: npm run build
+
+volumes:
+  cv_node_modules:

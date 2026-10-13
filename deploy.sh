@@ -13,9 +13,15 @@ PI_HOST="${1:-${DEPLOY_HOST:-raspberrypi.local}}"
 PI_DEST="${2:-${DEPLOY_DEST:-/var/www/cv}}"
 
 echo "=========================================="
-echo "🚀 Building CV Static Site on Mac..."
+echo "🚀 Building CV Static Site..."
 echo "=========================================="
-ASTRO_TELEMETRY_DISABLED=1 npm run build
+if [ "${BUILD_WITH_DOCKER:-0}" = "1" ] || ! command -v npm >/dev/null 2>&1; then
+  echo "🐳 Building with Docker Compose (zero local Node/npm needed)..."
+  docker compose run --rm --no-deps build
+else
+  echo "⚡ Building with local npm..."
+  ASTRO_TELEMETRY_DISABLED=1 npm run build
+fi
 
 echo ""
 echo "=========================================="

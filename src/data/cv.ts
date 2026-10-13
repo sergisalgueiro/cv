@@ -96,7 +96,7 @@ export const cvData: CVData = {
     phone: '+34 673550046',
     linkedin: 'https://www.linkedin.com/in/sergi-salgueiro-genis/',
     github: 'https://github.com/sergisalgueiro',
-    pdfFileName: '/sergi-salgueiro-cv.pdf',
+    pdfFileName: '/CV_Sergi_Salgueiro.pdf',
   },
   translations: {
     en: {

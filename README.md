@@ -58,16 +58,55 @@ Trilingual, responsive, ultra-fast personal CV website designed with **Astro** a
 │   └── styles/
 │       └── global.css            # Tailwind base & print styles
 ├── public/
-│   └── sergi-salgueiro-cv.pdf    # Downloadable CV PDF
+│   └── CV_Sergi_Salgueiro.pdf    # Downloadable CV PDF
 ├── .env.example                  # Template for deployment variables (git-tracked)
+├── .dockerignore                 # Excludes local artifacts from Docker context
+├── Dockerfile                    # Multi-stage Docker build (deps, dev, builder, runner)
+├── docker-compose.yml            # Compose services for dev, build, and web
+├── Makefile                      # Convenient CLI shortcuts (make dev, make build, etc.)
 ├── Caddyfile                     # Caddy configuration for Raspberry Pi
-├── deploy.sh                     # 1-command build & sync to Raspberry Pi
-└── nginx.conf                    # Alternative Nginx configuration
+├── deploy.sh                     # 1-command build (local or Docker) & sync to Raspberry Pi
+└── nginx.conf                    # Nginx configuration for production container
 ```
 
 ---
 
-## 🛠️ Local Development (Mac)
+## 🐳 Dockerized Development & Build (Recommended — No Local Tools)
+
+You **do not need Node.js or npm installed locally**. Everything runs in isolated Docker containers.
+
+### Quick Commands (Makefile)
+
+| Command | Description | URL / Output |
+| :--- | :--- | :--- |
+| `make dev` | Start live-reloading Astro dev server | [http://localhost:4321](http://localhost:4321) |
+| `make build` | Compile static site into `./dist/` | `./dist/` on host |
+| `make prod` | Run production Nginx web server in background | [http://localhost:80](http://localhost:80) |
+| `make stop` | Stop all running project containers | — |
+| `make deploy`| Build and deploy to Raspberry Pi | — |
+| `make shell` | Open interactive shell inside Node container | — |
+| `make clean` | Remove containers and node_modules volume | — |
+
+### Direct Docker Compose Commands
+
+```bash
+# 1. Start local dev server with hot reload
+docker compose up dev
+
+# 2. Build static files into ./dist on the host
+docker compose run --rm build
+
+# 3. Test production Nginx server locally
+docker compose up -d web
+# Stop it when done
+docker compose down
+```
+
+---
+
+## 🛠️ Alternative: Local Development (Requires Local Node.js 20+)
+
+If you already have Node.js and npm installed and prefer running natively:
 
 ```bash
 # Install dependencies
@@ -91,7 +130,7 @@ The Raspberry Pi 3 runs **Caddy v2.11.7** as a `systemd` service (`caddy.service
 
 ### Deploying Updates (1 Command)
 
-Whenever you edit your CV content in `src/data/cv.ts` or replace `public/sergi-salgueiro-cv.pdf`:
+Whenever you edit your CV content in `src/data/cv.ts` or replace `public/CV_Sergi_Salgueiro.pdf`:
 
 ```bash
 ./deploy.sh
@@ -119,5 +158,5 @@ To make your CV available to external recruiters without opening router ports:
 ## 📝 Updating Your CV
 
 * **Bio, Experience, Education, or Skills:** Edit [`src/data/cv.ts`](src/data/cv.ts).
-* **Downloadable PDF File:** Replace [`public/sergi-salgueiro-cv.pdf`](public/sergi-salgueiro-cv.pdf) with your updated PDF file.
+* **Downloadable PDF File:** Replace [`public/CV_Sergi_Salgueiro.pdf`](public/CV_Sergi_Salgueiro.pdf) with your updated PDF file.
 * Then run `./deploy.sh`!
