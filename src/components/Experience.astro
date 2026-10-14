@@ -64,6 +64,20 @@ const t = cvData.translations[locale];
                       {role.description}
                     </p>
 
+                    <!-- Role Highlights -->
+                    {
+                      role.highlights && role.highlights.length > 0 && (
+                        <ul class="space-y-1.5 pt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                          {role.highlights.map((highlight) => (
+                            <li class="flex items-start gap-2">
+                              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                              <span class="leading-relaxed">{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )
+                    }
+
                     <!-- Tech stack tags -->
                     <div class="flex flex-wrap gap-1.5 pt-1">
                       {

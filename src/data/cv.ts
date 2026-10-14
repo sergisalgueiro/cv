@@ -125,12 +125,19 @@ export const cvData: CVData = {
         items: [
           {
             company: 'Wallbox Chargers',
-            location: 'Barcelona, Spain',
+            location: 'Barcelona',
             roles: [
               {
                 title: 'Senior Software Engineer',
                 period: '01/2025 – Present',
-                description: 'Part of the Backend team responsible for designing, developing, and maintaining high-throughput scalable services and microservices within a large-scale smart EV charging IoT ecosystem.',
+                description: 'Design and maintain scalable backend microservices within Wallbox’s high-scale IoT ecosystem, ensuring resilient and reliable multi-service communication across 500k+ connected smart EV chargers.',
+                highlights: [
+                  'Backend Architecture: Built and optimized microservices in Go (Golang) and PHP, applying Hexagonal Architecture (Ports & Adapters) and clean code practices for modular, testable systems.',
+                  'IoT & Real-Time Messaging: Orchestrated asynchronous telemetry streaming and device communication using MQTT protocols and AWS SNS/SQS across distributed services.',
+                  'Cloud Infrastructure & CI/CD: Maintained containerized workflows with Docker and automated service deployments to AWS via GitLab CI/CD pipelines.',
+                  'Observability & Data Integrity: Monitored system health and diagnosed production issues using Grafana, while querying and validating relational data with MySQL, Metabase, and Databricks.',
+                  'AI-Assisted Engineering: Integrated Claude Code into the development lifecycle to accelerate code delivery, streamline debugging, and uphold high test quality.',
+                ],
                 tags: ['Go', 'PHP', 'AWS', 'SNS/SQS', 'MQTT', 'REST', 'GitLab', 'Docker', 'MySQL', 'Grafana', 'Databricks', 'Claude Code'],
               },
               {
@@ -143,7 +150,7 @@ export const cvData: CVData = {
           },
           {
             company: 'Idneo Technologies',
-            location: 'Barcelona, Spain',
+            location: 'Barcelona',
             roles: [
               {
                 title: 'R&D Embedded SW Engineer',
@@ -183,7 +190,7 @@ export const cvData: CVData = {
           },
           {
             institution: 'Universitat Politècnica de Catalunya (UPC)',
-            location: 'Barcelona, Catalonia',
+            location: 'Barcelona',
             degree: 'Bachelor Degree in Electronics and Industrial Automation Engineering',
             period: '2008 – 2013',
             relevantCourses: [
@@ -263,12 +270,19 @@ export const cvData: CVData = {
         items: [
           {
             company: 'Wallbox Chargers',
-            location: 'Barcelona, Catalunya',
+            location: 'Barcelona',
             roles: [
               {
                 title: 'Senior Software Engineer',
                 period: '01/2025 – Actualitat',
-                description: 'Membre de l\'equip de Backend encarregat de dissenyar, desenvolupar i mantenir microserveis i serveis altament escalables dins d\'un ecosistema IoT per a recàrrega intel·ligent de vehicles elèctrics.',
+                description: 'Disseny i manteniment de microserveis backend escalables dins de l\'ecosistema IoT d\'alta concurrència de Wallbox, garantint una comunicació fiable i d\'alt rendiment entre més de 500.000 carregadors de vehicles elèctrics connectats.',
+                highlights: [
+                  'Arquitectura Backend: Desenvolupament i optimització de microserveis en Go (Golang) i PHP, aplicant Arquitectura Hexagonal (Ports i Adaptadors) i bones pràctiques per a un codi modular i altament testeable.',
+                  'IoT i Missatgeria en Temps Real: Gestió de streaming de telemetria asíncrona i comunicació bidireccional amb dispositius mitjançant protocols MQTT i AWS SNS/SQS en serveis distribuïts.',
+                  'Cloud i DevOps: Manteniment de fluxos de treball "cloud-native" amb contenidors Docker i desplegament continu a AWS mitjançant canonades de GitLab CI/CD.',
+                  'Observabilitat i Dades: Monitorització de l\'estat del sistema i resolució d\'incidències a producció amb Grafana, verificant i consultant dades amb MySQL, Metabase i Databricks.',
+                  'Enginyeria Assistida per IA: Integració de Claude Code al flux de desenvolupament per accelerar la implementació de codi, optimitzar la depuració i garantir alts estàndards de qualitat.',
+                ],
                 tags: ['Go', 'PHP', 'AWS', 'SNS/SQS', 'MQTT', 'REST', 'GitLab', 'Docker', 'MySQL', 'Grafana', 'Databricks', 'Claude Code'],
               },
               {
@@ -281,7 +295,7 @@ export const cvData: CVData = {
           },
           {
             company: 'Idneo Technologies',
-            location: 'Barcelona, Catalunya',
+            location: 'Barcelona',
             roles: [
               {
                 title: 'R&D Embedded SW Engineer',
@@ -321,7 +335,7 @@ export const cvData: CVData = {
           },
           {
             institution: 'Universitat Politècnica de Catalunya (UPC)',
-            location: 'Barcelona, Catalunya',
+            location: 'Barcelona',
             degree: 'Grau en Enginyeria Electrònica Industrial i Automàtica',
             period: '2008 – 2013',
             relevantCourses: [
@@ -401,12 +415,19 @@ export const cvData: CVData = {
         items: [
           {
             company: 'Wallbox Chargers',
-            location: 'Barcelona, España',
+            location: 'Barcelona',
             roles: [
               {
                 title: 'Senior Software Engineer',
                 period: '01/2025 – Actualidad',
-                description: 'Parte del equipo de Backend responsable del diseño, desarrollo y mantenimiento de microservicios escalables dentro de un ecosistema IoT de alta concurrencia para carga de vehículos eléctricos.',
+                description: 'Diseño y mantenimiento de microservicios backend escalables dentro del ecosistema IoT de alta concurrencia de Wallbox, garantizando una comunicación fiable y de alto rendimiento entre más de 500.000 cargadores de vehículos eléctricos conectados.',
+                highlights: [
+                  'Arquitectura Backend: Construcción y optimización de microservicios en Go (Golang) y PHP, aplicando Arquitectura Hexagonal (Puertos y Adaptadores) y buenas prácticas para un código modular y altamente testable.',
+                  'IoT y Mensajería en Tiempo Real: Gestión de streaming asíncrono de telemetría y comunicación con dispositivos mediante protocolos MQTT y AWS SNS/SQS en servicios distribuidos.',
+                  'Cloud y DevOps: Mantenimiento de flujos de trabajo nativos en la nube con contenedores Docker y despliegues continuos en AWS mediante pipelines de GitLab CI/CD.',
+                  'Observabilidad y Datos: Monitorización del estado del sistema y resolución de incidencias en producción con Grafana, consultando y verificando datos con MySQL, Metabase y Databricks.',
+                  'Ingeniería Asistida por IA: Integración de Claude Code en el flujo de desarrollo para acelerar la entrega de código, optimizar el debugging y mantener altos estándares de calidad.',
+                ],
                 tags: ['Go', 'PHP', 'AWS', 'SNS/SQS', 'MQTT', 'REST', 'GitLab', 'Docker', 'MySQL', 'Grafana', 'Databricks', 'Claude Code'],
               },
               {
@@ -419,7 +440,7 @@ export const cvData: CVData = {
           },
           {
             company: 'Idneo Technologies',
-            location: 'Barcelona, España',
+            location: 'Barcelona',
             roles: [
               {
                 title: 'R&D Embedded SW Engineer',
@@ -459,7 +480,7 @@ export const cvData: CVData = {
           },
           {
             institution: 'Universitat Politècnica de Catalunya (UPC)',
-            location: 'Barcelona, España',
+            location: 'Barcelona',
             degree: 'Grado en Ingeniería Electrónica Industrial y Automática',
             period: '2008 – 2013',
             relevantCourses: [
