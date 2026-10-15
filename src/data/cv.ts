@@ -92,7 +92,7 @@ export interface CVData {
 export const cvData: CVData = {
   meta: {
     name: 'Sergi Salgueiro Genís',
-    title: 'Senior Software Engineer',
+    title: 'Software Engineer',
     location: 'Barcelona',
     email: 'sergi@salgueiro.com',
     linkedin: 'https://www.linkedin.com/in/sergi-salgueiro-genis/',
@@ -102,7 +102,7 @@ export const cvData: CVData = {
   translations: {
     en: {
       langName: 'English',
-      metaDescription: 'CV & Portfolio of Sergi Salgueiro Genís — Senior Software Engineer specializing in backend IoT systems, distributed architectures, and embedded software.',
+      metaDescription: 'CV & Portfolio of Sergi Salgueiro Genís — Software Engineer specializing in backend IoT systems, distributed architectures, and embedded software.',
       nav: {
         about: 'About',
         experience: 'Experience',
@@ -112,7 +112,7 @@ export const cvData: CVData = {
       },
       about: {
         title: 'About Me',
-        lead: 'Senior Software Engineer with deep experience spanning high-scale IoT backend microservices to robust embedded Linux and RTOS systems.',
+        lead: 'Software Engineer with deep experience spanning high-scale IoT backend microservices to robust embedded Linux and RTOS systems.',
         bio: 'Over 8+ years developing critical software solutions: from IoT backend services (Go, PHP, AWS, MQTT) powering connected devices at scale at Wallbox, to high-reliability embedded C/C++ systems for HP Jet Fusion 3D printing at Idneo. Master of Science from Denmark Technical University (DTU) in Automation & Robotics and Bachelor in Industrial Electronics & Automation from UPC Barcelona.',
         downloadPdf: 'Download PDF',
         copyEmail: 'Copy Email',
@@ -257,7 +257,7 @@ export const cvData: CVData = {
     },
     ca: {
       langName: 'Català',
-      metaDescription: 'CV i Portafoli de Sergi Salgueiro Genís — Enginyer de Software Senior especialitzat en sistemes backend per a IoT, arquitectures distribuïdes i software encastat.',
+      metaDescription: 'CV i Portafoli de Sergi Salgueiro Genís — Enginyer de Software especialitzat en sistemes backend per a IoT, arquitectures distribuïdes i software encastat.',
       nav: {
         about: 'Sobre mi',
         experience: 'Experiència',
@@ -267,7 +267,7 @@ export const cvData: CVData = {
       },
       about: {
         title: 'Sobre mi',
-        lead: 'Enginyer de Software Senior amb sòlida experiència des de microserveis backend per a IoT d\'alta escala fins a sistemes encastats robustos en Linux i RTOS.',
+        lead: 'Enginyer de Software amb sòlida experiència des de microserveis backend per a IoT d\'alta escala fins a sistemes encastats robustos en Linux i RTOS.',
         bio: 'Més de 8 anys desenvolupant solucions tecnològiques d\'alt impacte: des de serveis backend IoT (Go, PHP, AWS, MQTT) gestionant milers de dispositius connectats a Wallbox, fins a sistemes encastats C/C++ d\'alta fiabilitat per a les impressores industrials 3D HP Jet Fusion a Idneo. Màster en Ciències per la Universitat Tècnica de Dinamarca (DTU) en Automatització i Robòtica, i Graduat en Enginyeria Electrònica i Automàtica Industrial per la UPC.',
         downloadPdf: 'Descarregar PDF',
         copyEmail: 'Copiar correu',
@@ -412,7 +412,7 @@ export const cvData: CVData = {
     },
     es: {
       langName: 'Español',
-      metaDescription: 'CV y Portafolio de Sergi Salgueiro Genís — Ingeniero de Software Senior especializado en sistemas backend IoT, arquitecturas distribuidas y software embebido.',
+      metaDescription: 'CV y Portafolio de Sergi Salgueiro Genís — Ingeniero de Software especializado en sistemas backend IoT, arquitecturas distribuidas y software embebido.',
       nav: {
         about: 'Sobre mí',
         experience: 'Experiencia',
@@ -422,7 +422,7 @@ export const cvData: CVData = {
       },
       about: {
         title: 'Sobre mí',
-        lead: 'Ingeniero de Software Senior con amplia experiencia abarcando desde microservicios backend para IoT a gran escala hasta sistemas embebidos de alta fiabilidad en Linux y RTOS.',
+        lead: 'Ingeniero de Software con amplia experiencia abarcando desde microservicios backend para IoT a gran escala hasta sistemas embebidos de alta fiabilidad en Linux y RTOS.',
         bio: 'Más de 8 años de trayectoria técnica desarrollando soluciones de misión crítica: desde backend de IoT (Go, PHP, AWS, MQTT) gestionando ecosistemas de cargadores inteligentes en Wallbox, hasta sistemas embebidos C/C++ para la tecnología de impresión 3D HP Jet Fusion en Idneo. Máster por la Universidad Técnica de Dinamarca (DTU) en Automatización y Robótica, y Graduado en Ingeniería Electrónica y Automática Industrial por la UPC Barcelona.',
         downloadPdf: 'Descargar PDF',
         copyEmail: 'Copiar correo',
