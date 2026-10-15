@@ -163,13 +163,13 @@ export const cvData: CVData = {
               {
                 title: 'R&D Embedded SW Engineer',
                 period: '01/2020 – 04/2022',
-                description: 'Key contributor to the HP Jet Fusion 3D industrial printing solution. Embedded Linux software development and QA in a continuous integration environment adopting Agile methodologies.',
+                description: 'Built application-level C++ flows and state machines on Embedded Linux for HP\'s Jet Fusion 3D industrial printer, acting as the software bridge between the UI front panel, cloud & telemetry services, and the PLC commanding the print hardware. Worked in Agile CI/CD workflows.',
                 tags: ['C++', 'Gtest', 'Embedded Linux', 'Docker', 'TCP/UDP', 'Agile', 'CI/CD'],
               },
               {
                 title: 'Embedded Software Engineer',
                 period: '01/2017 – 12/2019',
-                description: 'Firmware development in Real-Time Operating Systems (RTOS) and automated QA testing within continuous integration pipelines for HP Jet Fusion 3D printers.',
+                description: 'Designed and developed real-time state machines in C on RTOS to drive the powder transport subsystem of HP\'s Jet Fusion 3D printer, writing low-level drivers and integrating sensors and actuators in close collaboration with the mechanical team. Interfaced with the Embedded Linux application layer over TCP/UDP and maintained code quality with Unity unit tests and Python/Pytest integration tests on Jenkins CI/CD.',
                 tags: ['C', 'Python', 'Pytest', 'Unity UT', 'Jenkins', 'B&R', 'Modbus', 'SVN', 'RTOS'],
               },
             ],
@@ -316,13 +316,13 @@ export const cvData: CVData = {
               {
                 title: 'R&D Embedded SW Engineer',
                 period: '01/2020 – 04/2022',
-                description: 'Contribució clau al projecte d\'impressió 3D industrial HP Jet Fusion. Desenvolupament de software sobre Linux encastat i QA en entorns d\'integració contínua mitjançant metodologies Àgils.',
+                description: 'Desenvolupament de fluxos i màquines d\'estat en C++ a nivell d\'aplicació sobre Embedded Linux per a la impressora 3D industrial HP Jet Fusion, actuant com a pont de software entre el panell frontal d\'usuari, els serveis de cloud i telemetria, i el PLC que comanda el hardware d\'impressió. Treball en entorns Àgils amb CI/CD.',
                 tags: ['C++', 'Gtest', 'Embedded Linux', 'Docker', 'TCP/UDP', 'Agile', 'CI/CD'],
               },
               {
                 title: 'Embedded Software Engineer',
                 period: '01/2017 – 12/2019',
-                description: 'Desenvolupament de firmware en Sistemes Operatius de Temps Real (RTOS) i proves automatitzades de QA en entorns d\'integració contínua per a impressores HP Jet Fusion.',
+                description: 'Disseny i desenvolupament de màquines d\'estat en temps real en C sobre RTOS per al subsistema de transport de pols de la impressora 3D HP Jet Fusion, escrivint drivers de baix nivell i integrant sensors i actuadors en estreta col·laboració amb l\'equip mecànic. Interfície amb la capa d\'aplicació Embedded Linux via TCP/UDP i manteniment de la qualitat del codi amb tests unitaris Unity i tests d\'integració Python/Pytest sobre Jenkins CI/CD.',
                 tags: ['C', 'Python', 'Pytest', 'Unity UT', 'Jenkins', 'B&R', 'Modbus', 'SVN', 'RTOS'],
               },
             ],
@@ -469,13 +469,13 @@ export const cvData: CVData = {
               {
                 title: 'R&D Embedded SW Engineer',
                 period: '01/2020 – 04/2022',
-                description: 'Desarrollo de software en Linux embebido y aseguramiento de calidad (QA) en integración continua bajo metodologías Ágiles para impresoras 3D HP Jet Fusion.',
+                description: 'Desarrollo de flujos y máquinas de estado en C++ a nivel de aplicación sobre Embedded Linux para la impresora 3D industrial HP Jet Fusion, actuando como puente de software entre el panel frontal de usuario, los servicios de cloud y telemetría, y el PLC que comanda el hardware de impresión. Trabajo en entornos Ágiles con CI/CD.',
                 tags: ['C++', 'Gtest', 'Embedded Linux', 'Docker', 'TCP/UDP', 'Agile', 'CI/CD'],
               },
               {
                 title: 'Embedded Software Engineer',
                 period: '01/2017 – 12/2019',
-                description: 'Desarrollo de firmware en Sistemas Operativos en Tiempo Real (RTOS) y pruebas automatizadas en entornos de integración continua para impresoras HP Jet Fusion.',
+                description: 'Diseño y desarrollo de máquinas de estado en tiempo real en C sobre RTOS para el subsistema de transporte de polvo de la impresora 3D HP Jet Fusion, escribiendo drivers de bajo nivel e integrando sensores y actuadores en estrecha colaboración con el equipo mecánico. Interfaz con la capa de aplicación Embedded Linux vía TCP/UDP y mantenimiento de la calidad del código con tests unitarios Unity y tests de integración Python/Pytest sobre Jenkins CI/CD.',
                 tags: ['C', 'Python', 'Pytest', 'Unity UT', 'Jenkins', 'B&R', 'Modbus', 'SVN', 'RTOS'],
               },
             ],
