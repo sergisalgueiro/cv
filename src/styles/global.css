@@ -23,6 +23,10 @@
     display: none !important;
   }
 
+  .collapsible-highlights {
+    display: block !important;
+  }
+
   .page-break-avoid {
     break-inside: avoid;
     page-break-inside: avoid;

@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../data/cv';
 import { cvData } from '../data/cv';
-import { Building2, Calendar, MapPin } from 'lucide-astro';
+import { Building2, Calendar, MapPin, ChevronDown } from 'lucide-astro';
 
 interface Props {
   locale: Locale;
@@ -24,7 +24,7 @@ const t = cvData.translations[locale];
     <!-- Timeline Container -->
     <div class="space-y-12">
       {
-        t.experience.items.map((companyItem) => (
+        t.experience.items.map((companyItem, companyIndex) => (
           <div class="page-break-avoid space-y-6">
             <!-- Company Header -->
             <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-zinc-200/60 pb-2 dark:border-zinc-800/60">
@@ -43,53 +43,94 @@ const t = cvData.translations[locale];
             <!-- Roles inside this company -->
             <div class="relative ml-3 space-y-8 border-l-2 border-zinc-200 pl-6 dark:border-zinc-800">
               {
-                companyItem.roles.map((role) => (
-                  <div class="relative space-y-3">
-                    <!-- Dot indicator -->
-                    <span class="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-500 shadow-xs dark:border-zinc-950"></span>
+                companyItem.roles.map((role, roleIndex) => {
+                  const initialCount = 2;
+                  const hasMore = role.highlights && role.highlights.length > initialCount;
+                  const showMoreLabel = t.experience.showMore;
+                  const highlightsId = `highlights-${companyIndex}-${roleIndex}`;
 
-                    <!-- Role title & period -->
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                      <h4 class="text-lg font-semibold text-zinc-900 dark:text-white">
-                        {role.title}
-                      </h4>
-                      <span class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
-                        <Calendar class="h-3.5 w-3.5" />
-                        {role.period}
-                      </span>
-                    </div>
+                  return (
+                    <div class="relative space-y-3">
+                      <!-- Dot indicator -->
+                      <span class="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-500 shadow-xs dark:border-zinc-950"></span>
 
-                    <!-- Description -->
-                    <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                      {role.description}
-                    </p>
+                      <!-- Role title & period -->
+                      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white">
+                          {role.title}
+                        </h4>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
+                          <Calendar class="h-3.5 w-3.5" />
+                          {role.period}
+                        </span>
+                      </div>
 
-                    <!-- Role Highlights -->
-                    {
-                      role.highlights && role.highlights.length > 0 && (
-                        <ul class="space-y-1.5 pt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                          {role.highlights.map((highlight) => (
-                            <li class="flex items-start gap-2">
-                              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
-                              <span class="leading-relaxed">{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )
-                    }
+                      <!-- Description -->
+                      <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                        {role.description}
+                      </p>
 
-                    <!-- Tech stack tags -->
-                    <div class="flex flex-wrap gap-1.5 pt-1">
+                      <!-- Role Highlights with Progressive Disclosure -->
                       {
-                        role.tags.map((tag) => (
-                          <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 transition-colors hover:bg-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:hover:bg-zinc-700">
-                            {tag}
-                          </span>
-                        ))
+                        role.highlights && role.highlights.length > 0 && (
+                          <div class="space-y-2">
+                            <!-- Always visible top highlights -->
+                            <ul class="space-y-1.5 pt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                              {role.highlights.slice(0, initialCount).map((highlight) => (
+                                <li class="flex items-start gap-2">
+                                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                                  <span class="leading-relaxed">{highlight}</span>
+                                </li>
+                              ))}
+                            </ul>
+
+                            <!-- Expandable remaining highlights -->
+                            {hasMore && (
+                              <>
+                                <ul
+                                  id={highlightsId}
+                                  class="collapsible-highlights hidden space-y-1.5 text-sm text-zinc-600 dark:text-zinc-400"
+                                >
+                                  {role.highlights.slice(initialCount).map((highlight) => (
+                                    <li class="flex items-start gap-2">
+                                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                                      <span class="leading-relaxed">{highlight}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+
+                                <div class="pt-0.5">
+                                  <button
+                                    type="button"
+                                    aria-controls={highlightsId}
+                                    aria-expanded="false"
+                                    class="toggle-highlights-btn no-print group inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-emerald-600 transition-colors hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 focus:outline-hidden focus-visible:underline"
+                                    data-show-more={showMoreLabel}
+                                    data-show-less={t.experience.showLess}
+                                  >
+                                    <span class="btn-text">{showMoreLabel}</span>
+                                    <ChevronDown class="chevron-icon h-3.5 w-3.5 transition-transform duration-200" />
+                                  </button>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        )
                       }
+
+                      <!-- Tech stack tags -->
+                      <div class="flex flex-wrap gap-1.5 pt-1">
+                        {
+                          role.tags.map((tag) => (
+                            <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 transition-colors hover:bg-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:hover:bg-zinc-700">
+                              {tag}
+                            </span>
+                          ))
+                        }
+                      </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
               }
             </div>
           </div>
@@ -98,3 +139,46 @@ const t = cvData.translations[locale];
     </div>
   </div>
 </section>
+
+<script>
+  function setupHighlightsToggles() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.toggle-highlights-btn');
+
+    buttons.forEach((btn) => {
+      if (btn.dataset.initialized === 'true') return;
+      btn.dataset.initialized = 'true';
+
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('aria-controls');
+        const targetList = targetId ? document.getElementById(targetId) : null;
+        if (!targetList) return;
+
+        const isCurrentlyExpanded = btn.getAttribute('aria-expanded') === 'true';
+        const willExpand = !isCurrentlyExpanded;
+
+        btn.setAttribute('aria-expanded', String(willExpand));
+        targetList.classList.toggle('hidden', !willExpand);
+
+        const textEl = btn.querySelector('.btn-text');
+        const icon = btn.querySelector('.chevron-icon');
+
+        if (textEl) {
+          textEl.textContent = willExpand
+            ? btn.getAttribute('data-show-less') || 'Show less'
+            : btn.getAttribute('data-show-more') || 'Show more';
+        }
+
+        if (icon) {
+          if (willExpand) {
+            icon.classList.add('rotate-180');
+          } else {
+            icon.classList.remove('rotate-180');
+          }
+        }
+      });
+    });
+  }
+
+  setupHighlightsToggles();
+  document.addEventListener('astro:page-load', setupHighlightsToggles);
+</script>

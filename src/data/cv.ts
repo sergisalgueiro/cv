@@ -37,6 +37,8 @@ export interface CVData {
       experience: {
         title: string;
         present: string;
+        showMore: string;
+        showLess: string;
         items: Array<{
           company: string;
           location: string;
@@ -122,6 +124,8 @@ export const cvData: CVData = {
       experience: {
         title: 'Work Experience',
         present: 'Present',
+        showMore: 'Show more highlights',
+        showLess: 'Show fewer highlights',
         items: [
           {
             company: 'Wallbox Chargers',
@@ -275,6 +279,8 @@ export const cvData: CVData = {
       experience: {
         title: 'Experiència Laboral',
         present: 'Actualitat',
+        showMore: 'Mostra més fites',
+        showLess: 'Mostra menys',
         items: [
           {
             company: 'Wallbox Chargers',
@@ -428,6 +434,8 @@ export const cvData: CVData = {
       experience: {
         title: 'Experiencia Laboral',
         present: 'Actualidad',
+        showMore: 'Mostrar más logros',
+        showLess: 'Mostrar menos',
         items: [
           {
             company: 'Wallbox Chargers',
