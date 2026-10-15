@@ -134,6 +134,7 @@ export const cvData: CVData = {
                 highlights: [
                   'Backend Architecture: Built and optimized microservices in Go (Golang) and PHP, applying Hexagonal Architecture (Ports & Adapters) and clean code practices for modular, testable systems.',
                   'IoT & Real-Time Messaging: Orchestrated asynchronous telemetry streaming and device communication using MQTT protocols and AWS SNS/SQS across distributed services.',
+                  'Third-Party Integrations: Integrated external APIs from the energy grid, connected vehicle, and smart energy device sectors to enrich charging features and enable seamless interoperability with the broader EV ecosystem.',
                   'Cloud Infrastructure & CI/CD: Maintained containerized workflows with Docker and automated service deployments to AWS via GitLab CI/CD pipelines.',
                   'Observability & Data Integrity: Monitored system health and diagnosed production issues using Grafana, while querying and validating relational data with MySQL, Metabase, and Databricks.',
                   'AI-Assisted Engineering: Integrated Claude Code into the development lifecycle to accelerate code delivery, streamline debugging, and uphold high test quality.',
@@ -143,8 +144,15 @@ export const cvData: CVData = {
               {
                 title: 'Senior C++ Engineer',
                 period: '04/2022 – 12/2024',
-                description: 'Part of a cross-platform core engineering team working alongside Mobile and Cloud teams developing user-centric, high-reliability embedded charging solutions.',
-                tags: ['C++', 'Gtest', 'Robot Framework', 'Embedded Linux', 'Modbus', 'BLE', 'REST', 'CMake', 'Bash', 'GitLab', 'MariaDB', 'Raspberry Pi', 'i.MX8'],
+                description: 'Developed embedded C++ services on an Embedded Linux platform for Wallbox\'s smart EV chargers, within a cross-platform team collaborating closely with Mobile and Cloud engineers to deliver user-centric charging solutions.',
+                highlights: [
+                  'Microservices Architecture: Designed and maintained on-device microservices communicating via Redis Pub/Sub in an event-driven architecture, enabling decoupled and independently deployable modules on a single embedded platform.',
+                  'Connectivity & Protocols: Implemented the BLE protocol and its APIs for mobile app integration, REST APIs for cloud synchronization, and MQTT for real-time backend telemetry — ensuring reliable communication across the full device-to-cloud stack.',
+                  'Energy Management: Delivered key features including green energy charging, single-to-three-phase switching, dynamic load balancing, and scheduled charging — optimizing energy consumption for end users.',
+                  'Peripheral Integration: Developed Modbus drivers for external energy meter communication and contributed to low-level firmware components (RTOS, hardware drivers) bridging the embedded and real-time layers.',
+                  'Testing & Quality: Ensured reliability through unit testing with GTest and end-to-end validation using Python + Robot Framework, maintaining high coverage across the embedded software stack.',
+                ],
+                tags: ['C++', 'Gtest', 'Robot Framework', 'Embedded Linux', 'Modbus', 'BLE', 'REST', 'MQTT', 'CMake', 'Bash', 'GitLab', 'MariaDB', 'Raspberry Pi', 'i.MX8'],
               },
             ],
           },
@@ -279,6 +287,7 @@ export const cvData: CVData = {
                 highlights: [
                   'Arquitectura Backend: Desenvolupament i optimització de microserveis en Go (Golang) i PHP, aplicant Arquitectura Hexagonal (Ports i Adaptadors) i bones pràctiques per a un codi modular i altament testeable.',
                   'IoT i Missatgeria en Temps Real: Gestió de streaming de telemetria asíncrona i comunicació bidireccional amb dispositius mitjançant protocols MQTT i AWS SNS/SQS en serveis distribuïts.',
+                  'Integracions de Tercers: Integració d\'APIs externes dels sectors de xarxa elèctrica, vehicles connectats i dispositius d\'energia intel·ligent per enriquir les funcionalitats de càrrega i facilitar la interoperabilitat amb l\'ecosistema de VE.',
                   'Cloud i DevOps: Manteniment de fluxos de treball "cloud-native" amb contenidors Docker i desplegament continu a AWS mitjançant canonades de GitLab CI/CD.',
                   'Observabilitat i Dades: Monitorització de l\'estat del sistema i resolució d\'incidències a producció amb Grafana, verificant i consultant dades amb MySQL, Metabase i Databricks.',
                   'Enginyeria Assistida per IA: Integració de Claude Code al flux de desenvolupament per accelerar la implementació de codi, optimitzar la depuració i garantir alts estàndards de qualitat.',
@@ -288,8 +297,15 @@ export const cvData: CVData = {
               {
                 title: 'Senior C++ Engineer',
                 period: '04/2022 – 12/2024',
-                description: 'Enginyer de l\'equip transversal core treballant estretament amb enginyers de Mobile i Cloud per oferir solucions de programari encastat d\'alta fiabilitat orientades a l\'usuari.',
-                tags: ['C++', 'Gtest', 'Robot Framework', 'Embedded Linux', 'Modbus', 'BLE', 'REST', 'CMake', 'Bash', 'GitLab', 'MariaDB', 'Raspberry Pi', 'i.MX8'],
+                description: 'Desenvolupament de serveis C++ encastats sobre una plataforma Embedded Linux per als carregadors intel·ligents de vehicles elèctrics de Wallbox, dins d\'un equip transversal col·laborant estretament amb enginyers de Mobile i Cloud per oferir solucions de càrrega orientades a l\'usuari.',
+                highlights: [
+                  'Arquitectura de Microserveis: Disseny i manteniment de microserveis al dispositiu comunicats mitjançant Redis Pub/Sub en una arquitectura basada en esdeveniments, permetent mòduls desacoblats i desplegables independentment en una sola plataforma encastada.',
+                  'Connectivitat i Protocols: Implementació del protocol BLE i les seves APIs per a la integració amb l\'app mòbil, APIs REST per a la sincronització amb el núvol, i MQTT per a telemetria en temps real — assegurant una comunicació fiable al llarg de tot l\'stack dispositiu-núvol.',
+                  'Gestió Energètica: Lliurament de funcionalitats clau com càrrega amb energia verda, commutació monofàsic-trifàsic, balanceig dinàmic de càrrega i programació de càrrega — optimitzant el consum energètic per als usuaris finals.',
+                  'Integració de Perifèrics: Desenvolupament de drivers Modbus per a la comunicació amb comptadors d\'energia externs i contribució a components de firmware de baix nivell (RTOS, drivers de hardware) connectant les capes encastada i de temps real.',
+                  'Testing i Qualitat: Garantia de fiabilitat mitjançant tests unitaris amb GTest i validació extrem a extrem amb Python + Robot Framework, mantenint una alta cobertura a tot l\'stack de software encastat.',
+                ],
+                tags: ['C++', 'Gtest', 'Robot Framework', 'Embedded Linux', 'Modbus', 'BLE', 'REST', 'MQTT', 'CMake', 'Bash', 'GitLab', 'MariaDB', 'Raspberry Pi', 'i.MX8'],
               },
             ],
           },
@@ -424,6 +440,7 @@ export const cvData: CVData = {
                 highlights: [
                   'Arquitectura Backend: Construcción y optimización de microservicios en Go (Golang) y PHP, aplicando Arquitectura Hexagonal (Puertos y Adaptadores) y buenas prácticas para un código modular y altamente testable.',
                   'IoT y Mensajería en Tiempo Real: Gestión de streaming asíncrono de telemetría y comunicación con dispositivos mediante protocolos MQTT y AWS SNS/SQS en servicios distribuidos.',
+                  'Integraciones de Terceros: Integración de APIs externas de los sectores de red eléctrica, vehículos conectados y dispositivos de energía inteligente para enriquecer las funcionalidades de carga y facilitar la interoperabilidad con el ecosistema de VE.',
                   'Cloud y DevOps: Mantenimiento de flujos de trabajo nativos en la nube con contenedores Docker y despliegues continuos en AWS mediante pipelines de GitLab CI/CD.',
                   'Observabilidad y Datos: Monitorización del estado del sistema y resolución de incidencias en producción con Grafana, consultando y verificando datos con MySQL, Metabase y Databricks.',
                   'Ingeniería Asistida por IA: Integración de Claude Code en el flujo de desarrollo para acelerar la entrega de código, optimizar el debugging y mantener altos estándares de calidad.',
@@ -433,8 +450,15 @@ export const cvData: CVData = {
               {
                 title: 'Senior C++ Engineer',
                 period: '04/2022 – 12/2024',
-                description: 'Miembro del equipo transversal core colaborando con ingenieros de Mobile y Cloud en soluciones de software embebido robustas orientadas al usuario.',
-                tags: ['C++', 'Gtest', 'Robot Framework', 'Embedded Linux', 'Modbus', 'BLE', 'REST', 'CMake', 'Bash', 'GitLab', 'MariaDB', 'Raspberry Pi', 'i.MX8'],
+                description: 'Desarrollo de servicios C++ embebidos sobre una plataforma Embedded Linux para los cargadores inteligentes de vehículos eléctricos de Wallbox, dentro de un equipo transversal colaborando estrechamente con ingenieros de Mobile y Cloud para ofrecer soluciones de carga orientadas al usuario.',
+                highlights: [
+                  'Arquitectura de Microservicios: Diseño y mantenimiento de microservicios en el dispositivo comunicados mediante Redis Pub/Sub en una arquitectura basada en eventos, permitiendo módulos desacoplados y desplegables independientemente en una sola plataforma embebida.',
+                  'Conectividad y Protocolos: Implementación del protocolo BLE y sus APIs para la integración con la app móvil, APIs REST para la sincronización con la nube, y MQTT para telemetría en tiempo real — asegurando una comunicación fiable a lo largo de todo el stack dispositivo-nube.',
+                  'Gestión Energética: Entrega de funcionalidades clave como carga con energía verde, conmutación monofásico-trifásico, balanceo dinámico de carga y programación de carga — optimizando el consumo energético para los usuarios finales.',
+                  'Integración de Periféricos: Desarrollo de drivers Modbus para la comunicación con contadores de energía externos y contribución a componentes de firmware de bajo nivel (RTOS, drivers de hardware) conectando las capas embebida y de tiempo real.',
+                  'Testing y Calidad: Garantía de fiabilidad mediante tests unitarios con GTest y validación extremo a extremo con Python + Robot Framework, manteniendo una alta cobertura en todo el stack de software embebido.',
+                ],
+                tags: ['C++', 'Gtest', 'Robot Framework', 'Embedded Linux', 'Modbus', 'BLE', 'REST', 'MQTT', 'CMake', 'Bash', 'GitLab', 'MariaDB', 'Raspberry Pi', 'i.MX8'],
               },
             ],
           },
